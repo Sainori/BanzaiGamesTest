@@ -306,6 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854385762}
   - component: {fileID: 1854385763}
+  - component: {fileID: 1854385764}
   m_Layer: 0
   m_Name: StartupController
   m_TagString: Untagged
@@ -339,5 +340,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45312d5fe28be41bd972ba992e988bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manController: {fileID: 3983465241794744099, guid: 3cf252e83da8148e18546e5c96991f54,
-    type: 3}
+--- !u!114 &1854385764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854385761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b816897ee744c859c046e1b9d9edef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: {fileID: 7054160743161508097, guid: 6859e49ee891449dba3cb6492b77dd75, type: 3}

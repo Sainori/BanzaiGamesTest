@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MapController
+namespace MapServices
 {
     public class Map : MonoBehaviour
     {

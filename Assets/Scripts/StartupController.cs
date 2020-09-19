@@ -1,25 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using MapServices;
+using MapServices.Interfaces;
+using TankServices;
+using TankServices.Interfaces;
+using UnityEngine;
 
 public class StartupController : MonoBehaviour
 {
-    [SerializeField] private MapController.MapController mapController;
-    
-    private object _tank;
-    private object _map;
+    private IMapController _mapController;
+    private ITankController _tankController;
+    private Tank _tank;
 
-    /// <summary>
-    /// Main goal of startup controller -> create all services
-    /// </summary>
-    // Start is called before the first frame update
     private void Start()
     {
-        _map = mapController.CreateMap();
-        // _tank = new TankFactory().CreateTank();
+        _mapController = transform.GetComponent<MapController>();
+        _tankController = transform.GetComponent<TankController>();
+
+        _tank = _tankController.CreteTank();
+        _mapController.CreateMap();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
-        // _tank.Update();
+        _tank.Update();
     }
 }
