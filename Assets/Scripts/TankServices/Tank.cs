@@ -12,6 +12,7 @@ namespace TankServices
         [SerializeField] private float maxMotorTorque = 400;
         [SerializeField] private float maxSteeringAngle = 30;
         [SerializeField] private int brakeForce = 400;
+        [SerializeField] private GameObject tankShellPrefab;
 
         private List<AxleInfo> _axleInfos = new List<AxleInfo>();
         private IInputController _inputController;
@@ -22,6 +23,7 @@ namespace TankServices
 
             _inputController.OnSpace += () => Brake(brakeForce);
             _inputController.OnSpaceUp += () => Brake(0);
+            _inputController.OnFire += OnFire;
 
             _axleInfos.AddRange(new[] {frontAxle, backAxle});
         }
@@ -56,6 +58,15 @@ namespace TankServices
                     axleInfo.rightWheel.motorTorque = motor;
                 }
             }
+        }
+
+        private void OnFire()
+        {
+            var tankShell = Instantiate(tankShellPrefab, transform);
+            tankShell.SetActive(true);
+            var rigidbody = tankShell.GetComponent<Rigidbody>();
+            rigidbody.AddForce(tankShell.transform.forward * 1000);
+
         }
     }
 }

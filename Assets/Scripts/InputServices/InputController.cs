@@ -9,47 +9,42 @@ namespace InputServices
         public float HorizontalAxis { get; private set; }
         public float VerticalAxis { get; private set; }
 
-        public Action OnRight { get; set; } = () => {};
-        public Action OnLeft { get; set; } = () => {};
-        public Action OnForward { get; set; } = () => {};
-        public Action OnBackward { get; set; } = () => {};
-        public Action OnSpace { get; set; } = () => {};
-        public Action OnSpaceUp { get; set; } = () => {};
-
+        public Action OnRight { get; set; } = () => { };
+        public Action OnLeft { get; set; } = () => { };
+        public Action OnForward { get; set; } = () => { };
+        public Action OnBackward { get; set; } = () => { };
+        public Action OnSpace { get; set; } = () => { };
+        public Action OnSpaceUp { get; set; } = () => { };
+        public Action OnFire { get; set; } = () => { };
 
         public void DirectUpdate()
         {
             HorizontalAxis = Input.GetAxis("Horizontal");
             VerticalAxis = Input.GetAxis("Vertical");
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            ProcessKeyInput(KeyCode.RightArrow, onKey: OnRight);
+            ProcessKeyInput(KeyCode.LeftArrow, onKey: OnLeft);
+            ProcessKeyInput(KeyCode.UpArrow, onKey: OnForward);
+            ProcessKeyInput(KeyCode.DownArrow, onKey: OnBackward);
+            ProcessKeyInput(KeyCode.Space, onKey: OnSpace, onKeyUp: OnSpaceUp);
+            ProcessKeyInput(KeyCode.X, onKeyDown: OnFire);
+        }
+
+        private void ProcessKeyInput(KeyCode keyCode, Action onKeyDown = null, Action onKey = null, Action onKeyUp = null)
+        {
+            if (onKeyDown != null && Input.GetKeyDown(keyCode))
             {
-                OnRight();
+                onKeyDown();
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (onKey != null && Input.GetKey(keyCode))
             {
-                OnLeft();
+                onKey();
             }
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (onKeyUp != null && Input.GetKeyUp(keyCode))
             {
-                OnForward();
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                OnBackward();
-            }
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                OnSpace();
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                OnSpaceUp();
+                onKeyUp();
             }
         }
     }

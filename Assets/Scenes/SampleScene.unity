@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b816897ee744c859c046e1b9d9edef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 2687887090208603117, guid: b8714096265aa4b8fbcfd109ce96df03, type: 3}
+  floor: {fileID: 6878110548551064681, guid: a16fd75d26b3442f98f30174b5949ba1, type: 3}
 --- !u!114 &1854385765
 MonoBehaviour:
   m_ObjectHideFlags: 0

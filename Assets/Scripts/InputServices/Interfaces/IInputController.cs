@@ -14,6 +14,7 @@ namespace InputServices.Interfaces
 
         Action OnSpace { get; set; }
         Action OnSpaceUp { get; set; }
+        Action OnFire { get; set; }
 
         void DirectUpdate();
     }
