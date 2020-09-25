@@ -9,10 +9,10 @@ namespace InputServices
         public float HorizontalAxis { get; private set; }
         public float VerticalAxis { get; private set; }
 
-        public Action OnRight { get; set; }
-        public Action OnLeft { get; set; }
-        public Action OnForward { get; set; }
-        public Action OnBackward { get; set; }
+        public Action OnRight { get; set; } = () => {};
+        public Action OnLeft { get; set; } = () => {};
+        public Action OnForward { get; set; } = () => {};
+        public Action OnBackward { get; set; } = () => {};
 
 
         public void DirectUpdate()
