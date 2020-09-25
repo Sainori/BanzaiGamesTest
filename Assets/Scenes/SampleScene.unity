@@ -284,7 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18a1566c39164e0ba7ce49e43a22c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tank: {fileID: 1153093373755847779, guid: a30540c41d7d5ed4281d72b4916afb5e, type: 3}
+  tankPrefab: {fileID: 1153093373755847779, guid: a30540c41d7d5ed4281d72b4916afb5e,
+    type: 3}
 --- !u!114 &1854385766
 MonoBehaviour:
   m_ObjectHideFlags: 0

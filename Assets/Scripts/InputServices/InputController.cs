@@ -13,6 +13,8 @@ namespace InputServices
         public Action OnLeft { get; set; } = () => {};
         public Action OnForward { get; set; } = () => {};
         public Action OnBackward { get; set; } = () => {};
+        public Action OnSpace { get; set; } = () => {};
+        public Action OnSpaceUp { get; set; } = () => {};
 
 
         public void DirectUpdate()
@@ -38,6 +40,16 @@ namespace InputServices
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 OnBackward();
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                OnSpace();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                OnSpaceUp();
             }
         }
     }

@@ -288,12 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d65717fec84d6faadd25e2ce3e5c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axleInfos:
-  - leftWheel: {fileID: 1095591638713429395}
+  frontAxle:
+    leftWheel: {fileID: 1095591638713429395}
     rightWheel: {fileID: 4071355281713765182}
     motor: 1
     steering: 1
-  - leftWheel: {fileID: 8983041680500228731}
+  backAxle:
+    leftWheel: {fileID: 8983041680500228731}
     rightWheel: {fileID: 1199414954790231450}
     motor: 0
     steering: 0

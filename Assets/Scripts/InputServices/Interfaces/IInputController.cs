@@ -12,6 +12,9 @@ namespace InputServices.Interfaces
         Action OnForward { get; set; }
         Action OnBackward { get; set; }
 
+        Action OnSpace { get; set; }
+        Action OnSpaceUp { get; set; }
+
         void DirectUpdate();
     }
 }
