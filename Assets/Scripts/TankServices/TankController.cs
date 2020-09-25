@@ -1,4 +1,5 @@
-﻿using TankServices.Interfaces;
+﻿using InputServices.Interfaces;
+using TankServices.Interfaces;
 using UnityEngine;
 
 namespace TankServices
@@ -10,11 +11,14 @@ namespace TankServices
     {
         [SerializeField] private GameObject tank = null;
 
-        // Start is called before the first frame update
-        public Tank CreteTank()
+        public Tank CreteTank(IInputController inputController)
         {
-            // return Instantiate(tank);
-            return null;
+            var tankObject = Instantiate(tank);
+            inputController.OnRight += () => { tankObject.transform.position += Vector3.right * Time.deltaTime; };
+            inputController.OnForward += () => { tankObject.transform.position += Vector3.forward * Time.deltaTime; };
+            inputController.OnBackward += () => { tankObject.transform.position += Vector3.back * Time.deltaTime; };
+            inputController.OnLeft += () => { tankObject.transform.position += Vector3.left * Time.deltaTime; };
+            return tankObject.AddComponent<Tank>();
         }
     }
 }

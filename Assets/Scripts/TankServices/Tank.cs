@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 
 namespace TankServices
 {
     public class Tank : MonoBehaviour
     {
-        public void Update()
+        public void DirectUpdate()
         {
-            Console.WriteLine("I am tank!");
+ 
         }
     }
 }

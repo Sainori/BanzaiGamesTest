@@ -8,7 +8,7 @@ namespace MapServices
 
         public void AddFloor(GameObject floor)
         {
-            _floor = Instantiate(floor);
+            _floor = Instantiate(floor, transform);
         }
     }
 }
