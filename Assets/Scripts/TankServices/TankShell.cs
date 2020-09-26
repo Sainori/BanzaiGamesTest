@@ -24,6 +24,10 @@ namespace TankServices
         private void OnCollisionEnter(Collision other)
         {
             OnExplosion(this);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(other.gameObject);
+            }
         }
 
         public void Deactivate()

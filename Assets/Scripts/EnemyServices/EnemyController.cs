@@ -9,7 +9,7 @@ namespace EnemyServices
         [SerializeField] private int maxEnemyCount = 1;
         [SerializeField] private GameObject enemyPrefab;
 
-        private List<Enemy> _enemies = new List<Enemy>();
+        [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
 
         public void DirectUpdate()
         {
@@ -24,8 +24,11 @@ namespace EnemyServices
         private void SpawnEnemy()
         {
             var enemyObject = Instantiate(enemyPrefab);
+            Debug.Log("Spawn");
+            enemyObject.transform.position = new Vector3(2, 0, 2);
             var enemy = enemyObject.GetComponent<Enemy>();
             _enemies.Add(enemy);
+            enemy.OnEnemyDestroy += (enem1Y) => { _enemies.Remove(enem1Y); };
         }
     }
 }
