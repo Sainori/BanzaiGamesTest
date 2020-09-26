@@ -6,6 +6,7 @@ namespace TankServices
     public class TankShell : MonoBehaviour
     {
         private Rigidbody _rigidbody;
+        public Action<TankShell> OnShoot { get; set; } = tankShell => { };
         public Action<TankShell> OnExplosion { get; set; } = tankShell => { };
 
         public void Initialize()
@@ -16,6 +17,7 @@ namespace TankServices
 
         public void ShootWithForce(int force)
         {
+            OnShoot(this);
             _rigidbody.AddForce(transform.forward * force);
         }
 
@@ -32,6 +34,7 @@ namespace TankServices
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
 
+            OnShoot = shell => { };
             OnExplosion = shell => { };
 
             gameObject.SetActive(false);

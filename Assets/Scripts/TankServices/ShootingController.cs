@@ -10,8 +10,8 @@ namespace TankServices
         [SerializeField] private GameObject tankShellPrefab;
         [SerializeField] private int shootForce = 2000;
 
-        private List<TankShell> _freeTankShells = new List<TankShell>();
-        private List<TankShell> _activeTankShells = new List<TankShell>();
+        [SerializeField] private List<TankShell> _freeTankShells = new List<TankShell>();
+        [SerializeField] private List<TankShell> _activeTankShells = new List<TankShell>();
 
         public void Shoot()
         {
@@ -22,14 +22,19 @@ namespace TankServices
 
             var shell = _freeTankShells.First();
 
-            _freeTankShells.Remove(shell);
-            _activeTankShells.Add(shell);
-
+            shell.Initialize();
+            shell.OnShoot += OnShoot;
             shell.ShootWithForce(shootForce);
-            shell.OnExplosion += OnShellExplosion;
+            shell.OnExplosion += OnExplosion;
         }
 
-        private void OnShellExplosion(TankShell tankShell)
+        private void OnShoot(TankShell shell)
+        {
+            _freeTankShells.Remove(shell);
+            _activeTankShells.Add(shell);
+        }
+
+        private void OnExplosion(TankShell tankShell)
         {
             _activeTankShells.Remove(tankShell);
             _freeTankShells.Add(tankShell);
@@ -38,10 +43,8 @@ namespace TankServices
 
         private TankShell CreateShell()
         {
-            var tankShellObject = Instantiate(tankShellPrefab, tankShellPrefab.transform.parent);
-            var tankShell = tankShellObject.GetComponent<TankShell>();
-            tankShell.Initialize();
-            return tankShell;
+            var tankShell = Instantiate(tankShellPrefab, tankShellPrefab.transform.parent);
+            return tankShell.GetComponent<TankShell>();
         }
 
         public void ChangeWeapon()
