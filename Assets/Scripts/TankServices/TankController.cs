@@ -11,8 +11,10 @@ namespace TankServices
         public Tank CreteTank(IInputController inputController)
         {
             var tankObject = Instantiate(tankPrefab);
+            var shootingController = tankObject.GetComponent<IShootingController>();
             var tank = tankObject.GetComponent<Tank>();
-            tank.Initialize(inputController);
+            
+            tank.Initialize(inputController, shootingController);
 
             return tank;
         }

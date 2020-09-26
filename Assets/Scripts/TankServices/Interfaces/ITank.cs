@@ -4,6 +4,6 @@ namespace TankServices.Interfaces
 {
     public interface ITank
     {
-        void Initialize(IInputController inputController);
+        void Initialize(IInputController inputController, IShootingController shootingController);
     }
 }

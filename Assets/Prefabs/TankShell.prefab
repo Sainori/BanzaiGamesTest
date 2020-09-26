@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7836717825834629032}
   - component: {fileID: -6788499146515627018}
   - component: {fileID: -5838222547041529859}
+  - component: {fileID: 6833330813158402491}
   m_Layer: 0
   m_Name: TankShell
   m_TagString: Untagged
@@ -107,7 +108,19 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
+  m_Radius: 0.035
   m_Height: 0.3
   m_Direction: 2
   m_Center: {x: 0, y: -0.000000016763806, z: 0.13}
+--- !u!114 &6833330813158402491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090710131271465290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e7c39ece184d7e82efba8c249eb5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
