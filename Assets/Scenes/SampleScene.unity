@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 1854385764}
   - component: {fileID: 1854385765}
   - component: {fileID: 1854385766}
+  - component: {fileID: 1854385767}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -298,3 +299,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35143766170142809c7369766acdf243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1854385767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854385761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619c4010e0d8460db77adbccf0e35a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnemyCount: 1
+  enemyPrefab: {fileID: 1311290861401530, guid: 312b31977ed9b2d48a14849ebb8c7fb3,
+    type: 3}

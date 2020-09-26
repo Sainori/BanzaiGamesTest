@@ -1,4 +1,5 @@
 ﻿using System;
+using EnemyServices.Interfaces;
 using InputServices.Interfaces;
 using MapServices;
 using MapServices.Interfaces;
@@ -11,6 +12,7 @@ public class GameController : MonoBehaviour
     private IMapController _mapController;
     private ITankController _tankController;
     private IInputController _inputController;
+    private IEnemyController _enemyController;
 
     private Tank _tank;
 
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour
         _mapController = gameObject.GetComponent<IMapController>();
         _tankController = gameObject.GetComponent<ITankController>();
         _inputController = gameObject.GetComponent<IInputController>();
+        _enemyController = gameObject.GetComponent<IEnemyController>();
     }
 
     private void Start()
@@ -31,5 +34,6 @@ public class GameController : MonoBehaviour
     {
         _tank.DirectUpdate();
         _inputController.DirectUpdate();
-    }
+        _enemyController.DirectUpdate();
+    } 
 }
