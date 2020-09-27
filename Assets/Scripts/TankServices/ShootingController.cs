@@ -13,6 +13,16 @@ namespace TankServices
         [SerializeField] private List<TankShell> _freeTankShells = new List<TankShell>();
         [SerializeField] private List<TankShell> _activeTankShells = new List<TankShell>();
 
+        [SerializeField] private List<TankWeapon> _weapons = new List<TankWeapon>();
+        private int _weaponIndex = 0;
+        private TankWeapon _currentWeapon;
+
+        public void Initialize()
+        {
+            _currentWeapon = _weapons[0];
+            _currentWeapon.Activate();
+        }
+
         public void Shoot()
         {
             if (_freeTankShells.Count == 0)
@@ -22,7 +32,7 @@ namespace TankServices
 
             var shell = _freeTankShells.First();
 
-            shell.Initialize(10);
+            shell.Initialize(_currentWeapon.damage);
             shell.OnShoot += OnShoot;
             shell.ShootWithForce(shootForce);
             shell.OnExplosion += OnExplosion;
@@ -47,9 +57,24 @@ namespace TankServices
             return tankShell.GetComponent<TankShell>();
         }
 
-        public void ChangeWeapon()
+        public void ChangeWeapon(WeaponChange weaponChange)
         {
-            throw new System.NotImplementedException();
+            _currentWeapon.Deactivate();
+
+            if (_weaponIndex == _weapons.Count - 1 && weaponChange == WeaponChange.Next)
+            {
+                _weaponIndex = 0;
+            }else if (_weaponIndex == 0 && weaponChange == WeaponChange.Previous)
+            {
+                _weaponIndex = _weapons.Count - 1;
+            }
+            else
+            {
+                _weaponIndex += (int) weaponChange;
+            }
+
+            _currentWeapon = _weapons[_weaponIndex];
+            _currentWeapon.Activate();
         }
     }
 }

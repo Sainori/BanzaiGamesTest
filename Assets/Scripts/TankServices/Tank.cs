@@ -22,6 +22,10 @@ namespace TankServices
         {
             _inputController = inputController;
             _shootingController = shootingController;
+            _shootingController.Initialize();
+
+            _inputController.OnNextWeapon += () => _shootingController.ChangeWeapon(WeaponChange.Next);
+            _inputController.OnPreviousWeapon += () => _shootingController.ChangeWeapon(WeaponChange.Previous);
 
             _inputController.OnSpace += () => Brake(brakeForce);
             _inputController.OnSpaceUp += () => Brake(0);

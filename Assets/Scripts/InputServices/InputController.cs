@@ -9,10 +9,8 @@ namespace InputServices
         public float HorizontalAxis { get; private set; }
         public float VerticalAxis { get; private set; }
 
-        public Action OnRight { get; set; } = () => { };
-        public Action OnLeft { get; set; } = () => { };
-        public Action OnForward { get; set; } = () => { };
-        public Action OnBackward { get; set; } = () => { };
+        public Action OnNextWeapon { get; set; } = () => { };
+        public Action OnPreviousWeapon { get; set; } = () => { };
         public Action OnSpace { get; set; } = () => { };
         public Action OnSpaceUp { get; set; } = () => { };
         public Action OnFire { get; set; } = () => { };
@@ -22,10 +20,8 @@ namespace InputServices
             HorizontalAxis = Input.GetAxis("Horizontal");
             VerticalAxis = Input.GetAxis("Vertical");
 
-            ProcessKeyInput(KeyCode.RightArrow, onKey: OnRight);
-            ProcessKeyInput(KeyCode.LeftArrow, onKey: OnLeft);
-            ProcessKeyInput(KeyCode.UpArrow, onKey: OnForward);
-            ProcessKeyInput(KeyCode.DownArrow, onKey: OnBackward);
+            ProcessKeyInput(KeyCode.W, onKeyUp: OnNextWeapon);
+            ProcessKeyInput(KeyCode.Q, onKeyUp: OnPreviousWeapon);
             ProcessKeyInput(KeyCode.Space, onKey: OnSpace, onKeyUp: OnSpaceUp);
             ProcessKeyInput(KeyCode.X, onKeyDown: OnFire);
         }
