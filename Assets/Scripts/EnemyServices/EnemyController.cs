@@ -13,31 +13,35 @@ namespace EnemyServices
         [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
         private List<Transform> _spawnPoints;
-        private System.Random _random;
+        private Random _random;
+        private Transform _player;
 
-        public void Initialize(List<Transform> spawnPoints)
+        public void Initialize(List<Transform> spawnPoints, Transform player)
         {
             _spawnPoints = spawnPoints;
             _random = new Random();
+            _player = player;
         }
 
         public void DirectUpdate()
+        {
+            enemies.ForEach(enemy => enemy.Attack());
+            SpawnEnemy();
+        }
+
+        private void SpawnEnemy()
         {
             if (enemies.Count >= maxEnemyCount)
             {
                 return;
             }
 
-            SpawnEnemy();
-        }
-
-        private void SpawnEnemy()
-        {
             var enemyObject = Instantiate(enemyPrefab);
             enemyObject.transform.position = _spawnPoints[_random.Next(_spawnPoints.Count)].position;
 
             var enemy = enemyObject.GetComponent<Enemy>();
             enemies.Add(enemy);
+            enemy.Initialize(_player);
             enemy.OnEnemyDestroy += enem1Y => { enemies.Remove(enem1Y); };
         }
     }

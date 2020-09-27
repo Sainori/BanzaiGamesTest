@@ -5,7 +5,7 @@ namespace EnemyServices.Interfaces
 {
     public interface IEnemyController
     {
-        void Initialize(List<Transform> spawnPoints);
+        void Initialize(List<Transform> spawnPoints, Transform player);
         void DirectUpdate();
     }
 }

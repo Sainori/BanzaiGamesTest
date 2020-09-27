@@ -27,8 +27,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _mapController.CreateMap();
-        _enemyController.Initialize(_mapController.GetEnemySpawnPoints());
         _tank = _tankController.CreteTank(_inputController, _mapController.GetPlayerSpawnPoint());
+        _enemyController.Initialize(_mapController.GetEnemySpawnPoints(), _tank.transform);
     }
 
     private void Update()
