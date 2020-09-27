@@ -64,7 +64,8 @@ namespace TankServices
             if (_weaponIndex == _weapons.Count - 1 && weaponChange == WeaponChange.Next)
             {
                 _weaponIndex = 0;
-            }else if (_weaponIndex == 0 && weaponChange == WeaponChange.Previous)
+            }
+            else if (_weaponIndex == 0 && weaponChange == WeaponChange.Previous)
             {
                 _weaponIndex = _weapons.Count - 1;
             }
