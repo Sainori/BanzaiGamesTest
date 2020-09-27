@@ -272,19 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b816897ee744c859c046e1b9d9edef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 6878110548551064681, guid: a16fd75d26b3442f98f30174b5949ba1, type: 3}
-  floorPosition: {x: 0, y: 0, z: 0}
-  wall: {fileID: 8900591931458120106, guid: a90dbe9c71d0a414b88fa163df845436, type: 3}
-  wallPositions:
-  - {x: 0, y: 1, z: 49.5}
-  - {x: 0, y: 1, z: -49.5}
-  - {x: 49.5, y: 1, z: 0}
-  - {x: -49.5, y: 1, z: 0}
-  wallRotations:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 90, z: 0}
-  - {x: 0, y: 90, z: 0}
+  mapPrefab: {fileID: 1869366721837983169, guid: da4c41996c0d34519b2f5d9e70fbba7b,
+    type: 3}
 --- !u!114 &1854385765
 MonoBehaviour:
   m_ObjectHideFlags: 0

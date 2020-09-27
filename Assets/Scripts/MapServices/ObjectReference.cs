@@ -9,9 +9,11 @@ namespace MapServices
         [SerializeField] private Vector3 size = Vector3.one;
 
         [SerializeField] public GameObject prefab;
+        private MeshFilter _meshFilter;
 
         private void OnDrawGizmos()
         {
+            _meshFilter = prefab != null ? prefab.GetComponent<MeshFilter>() : null;
             size = prefab != null ? prefab.transform.localScale : Vector3.one;
 
             var previousColor = Gizmos.color;
@@ -22,11 +24,12 @@ namespace MapServices
 
         private void DrawMesh(Vector3 meshSize)
         {
-            if (CanBeDrawn(out var mesh))
+            if (!CanBeDrawn())
             {
                 return;
             }
 
+            var mesh = _meshFilter.sharedMesh;
             var objectTransform = transform;
             if (isWire)
             {
@@ -37,17 +40,15 @@ namespace MapServices
             Gizmos.DrawMesh(mesh, -1, objectTransform.position, objectTransform.rotation, meshSize);
         }
 
-        private bool CanBeDrawn(out Mesh mesh)
+        private bool CanBeDrawn()
         {
             if (prefab == null)
             {
                 Debug.Log($"'{gameObject.name}': Can't draw mesh, please add Prefab!");
-                mesh = null;
                 return false;
             }
 
-            mesh = prefab != null ? prefab.GetComponent<MeshFilter>()?.sharedMesh : null;
-            if (mesh == null)
+            if (_meshFilter == null)
             {
                 Debug.Log($"'{gameObject.name}': Can't draw mesh, please add MeshFilter component with mesh!");
                 return false;
