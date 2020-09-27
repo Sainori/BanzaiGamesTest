@@ -44,13 +44,13 @@ namespace MapServices
         {
             if (prefab == null)
             {
-                Debug.Log($"'{gameObject.name}': Can't draw mesh, please add Prefab!");
+                Debug.LogError($"'{gameObject.name}': Can't draw mesh, please add Prefab!");
                 return false;
             }
 
             if (_meshFilter == null)
             {
-                Debug.Log($"'{gameObject.name}': Can't draw mesh, please add MeshFilter component with mesh!");
+                Debug.LogError($"'{gameObject.name}': Can't draw mesh, please add MeshFilter component with mesh!");
                 return false;
             }
 

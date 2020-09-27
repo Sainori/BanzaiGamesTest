@@ -12,6 +12,11 @@ namespace MapServices
         {
             foreach (var reference in objectReferences)
             {
+                if (reference == null)
+                {
+                    Debug.LogError("Can't create object: reference is null.");
+                }
+
                 var referenceTransform = reference.transform;
                 gameObjects.Add(Instantiate(reference.prefab, referenceTransform.position, referenceTransform.rotation, mapTransform));
             }
