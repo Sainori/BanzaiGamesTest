@@ -38,6 +38,11 @@ namespace TankServices
 
         public void DirectUpdate()
         {
+            if (IsDead)
+            {
+                Time.timeScale = 0;
+            }
+
             UpdateMove();
         }
 

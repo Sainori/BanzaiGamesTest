@@ -38,7 +38,7 @@ namespace TankServices
                 return;
             }
 
-            character.GetDamage(_damage);
+            character.TakeDamage(_damage);
         }
 
         public void Deactivate()
