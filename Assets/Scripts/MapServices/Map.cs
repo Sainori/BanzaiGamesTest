@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TankServices;
 using UnityEngine;
 
 namespace MapServices
@@ -7,6 +8,12 @@ namespace MapServices
     {
         [SerializeField] private List<ObjectReference> objectReferences = new List<ObjectReference>();
         [SerializeField] private List<GameObject> gameObjects = new List<GameObject>();
+        [SerializeField] private Transform playerSpawnPoint;
+        [SerializeField] private List<Transform> enemySpawnPoints;
+
+        public Transform GetPlayerSpawn() => playerSpawnPoint;
+
+        public List<Transform> GetEnemySpawns() => enemySpawnPoints;
 
         public void BuildByReferences(Transform mapTransform)
         {

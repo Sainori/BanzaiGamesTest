@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _mapController.CreateMap();
-        _tank = _tankController.CreteTank(_inputController);
+        _tank = _tankController.CreteTank(_inputController, _mapController.GetPlayerSpawnPoint());
     }
 
     private void Update()

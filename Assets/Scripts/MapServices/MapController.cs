@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MapServices.Interfaces;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ namespace MapServices
     {
         [SerializeField] private GameObject mapPrefab;
         private Map _map;
+
+        public Transform GetPlayerSpawnPoint() => _map.GetPlayerSpawn();
+
+        public List<Transform> GetEnemySpawnPoints() => _map.GetEnemySpawns();
 
         public void CreateMap()
         {
