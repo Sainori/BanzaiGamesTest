@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872f0aded9a245efb756755a8cc298b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 50
 --- !u!1 &1153093373755847779
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872f0aded9a245efb756755a8cc298b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 100
 --- !u!1 &4912251395412499413
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872f0aded9a245efb756755a8cc298b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 300
 --- !u!1 &7561097175505383651
 GameObject:
   m_ObjectHideFlags: 0

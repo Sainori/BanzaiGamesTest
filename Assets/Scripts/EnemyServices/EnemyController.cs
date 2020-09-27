@@ -7,14 +7,17 @@ namespace EnemyServices
 {
     public class EnemyController : MonoBehaviour, IEnemyController
     {
+        [SerializeField] private float spawnDelay = 0.5f;
+
         [SerializeField] private int maxEnemyCount = 10;
-        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private List<GameObject> enemyPrefabs;
 
         [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
         private List<Transform> _spawnPoints;
         private Random _random;
         private Transform _player;
+        private float _delayLeft;
 
         public void Initialize(List<Transform> spawnPoints, Transform player)
         {
@@ -24,6 +27,12 @@ namespace EnemyServices
         }
 
         public void DirectUpdate()
+        {
+            UpdateEnemies();
+            SpawnNewEnemy();
+        }
+
+        private void UpdateEnemies()
         {
             for (var index = 0; index < enemies.Count; index++)
             {
@@ -36,29 +45,35 @@ namespace EnemyServices
 
                 enemy.DirectUpdate();
             }
-
-            SpawnEnemy();
         }
 
-        private void SpawnEnemy()
+        private void SpawnNewEnemy()
         {
             if (enemies.Count >= maxEnemyCount)
             {
                 return;
             }
 
-            var enemyObject = Instantiate(enemyPrefab);
+            if (_delayLeft > 0)
+            {
+                _delayLeft -= Time.deltaTime;
+                return;
+            }
+
+            _delayLeft = spawnDelay;
+            SetupNewEnemy();
+        }
+
+        private void SetupNewEnemy()
+        {
+            var enemyObject = Instantiate(enemyPrefabs[_random.Next(enemyPrefabs.Count)]);
             enemyObject.transform.position = _spawnPoints[_random.Next(_spawnPoints.Count)].position;
 
             var enemy = enemyObject.GetComponent<Enemy>();
             enemies.Add(enemy);
             enemy.Initialize(_player);
 
-            enemy.OnEnemyDestroy += enem1Y =>
-            {
-                Debug.Log("Destroy");
-                Destroy(enem1Y.gameObject);
-            };
+            enemy.OnEnemyDestroy += destroyingEnemy => Destroy(destroyingEnemy.gameObject);
         }
     }
 }
