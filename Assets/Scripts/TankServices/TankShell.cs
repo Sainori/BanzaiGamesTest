@@ -1,16 +1,19 @@
 using System;
+using StatsServices;
 using UnityEngine;
 
 namespace TankServices
 {
     public class TankShell : MonoBehaviour
     {
+        private int _damage;
         private Rigidbody _rigidbody;
         public Action<TankShell> OnShoot { get; set; } = tankShell => { };
         public Action<TankShell> OnExplosion { get; set; } = tankShell => { };
 
-        public void Initialize()
+        public void Initialize(int shellDamage)
         {
+            _damage = shellDamage;
             gameObject.SetActive(true);
             _rigidbody = gameObject.GetComponent<Rigidbody>();
         }
@@ -24,10 +27,18 @@ namespace TankServices
         private void OnCollisionEnter(Collision other)
         {
             OnExplosion(this);
-            if (other.gameObject.CompareTag("Enemy"))
+            if (!other.gameObject.CompareTag("Enemy"))
             {
-                Destroy(other.gameObject);
+                return;
             }
+
+            var character = other.transform.GetComponent<Character>();
+            if (character == null)
+            {
+                return;
+            }
+
+            character.GetDamage(_damage);
         }
 
         public void Deactivate()

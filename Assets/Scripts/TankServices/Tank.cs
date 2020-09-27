@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using InputServices.Interfaces;
+using StatsServices;
 using TankServices.Interfaces;
 using UnityEngine;
 
 namespace TankServices
 {
-    public class Tank : MonoBehaviour, ITank
+    public class Tank : Character, ITank
     {
         [SerializeField] private AxleInfo frontAxle;
         [SerializeField] private AxleInfo backAxle;

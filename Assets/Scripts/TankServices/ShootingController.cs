@@ -22,7 +22,7 @@ namespace TankServices
 
             var shell = _freeTankShells.First();
 
-            shell.Initialize();
+            shell.Initialize(10);
             shell.OnShoot += OnShoot;
             shell.ShootWithForce(shootForce);
             shell.OnExplosion += OnExplosion;

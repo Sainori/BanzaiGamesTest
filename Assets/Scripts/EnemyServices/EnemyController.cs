@@ -25,7 +25,18 @@ namespace EnemyServices
 
         public void DirectUpdate()
         {
-            enemies.ForEach(enemy => enemy.Attack());
+            for (var index = 0; index < enemies.Count; index++)
+            {
+                var enemy = enemies[index];
+                if (enemy == null || enemy.IsDead)
+                {
+                    enemies.Remove(enemy);
+                    index--;
+                }
+
+                enemy.DirectUpdate();
+            }
+
             SpawnEnemy();
         }
 
@@ -42,7 +53,12 @@ namespace EnemyServices
             var enemy = enemyObject.GetComponent<Enemy>();
             enemies.Add(enemy);
             enemy.Initialize(_player);
-            enemy.OnEnemyDestroy += enem1Y => { enemies.Remove(enem1Y); };
+
+            enemy.OnEnemyDestroy += enem1Y =>
+            {
+                Debug.Log("Destroy");
+                Destroy(enem1Y.gameObject);
+            };
         }
     }
 }

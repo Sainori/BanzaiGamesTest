@@ -1,10 +1,11 @@
 using System;
+using StatsServices;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace EnemyServices
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Character
     {
         public Action<Enemy> OnEnemyDestroy = enemy => { };
         private NavMeshAgent _navMeshAgent;
@@ -16,13 +17,23 @@ namespace EnemyServices
             _navMeshAgent = transform.GetComponent<NavMeshAgent>();
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+        }
+
         private void OnDestroy()
         {
             OnEnemyDestroy(this);
         }
 
-        public void Attack()
+        public void DirectUpdate()
         {
+            if (IsDead)
+            {
+                OnEnemyDestroy(this);
+                return;
+            }
+
             _navMeshAgent.SetDestination(_player.position);
         }
     }
