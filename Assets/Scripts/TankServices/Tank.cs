@@ -44,6 +44,7 @@ namespace TankServices
         {
             if (IsDead)
             {
+                // TODO: Restart scene
                 Time.timeScale = 0;
             }
 
@@ -69,6 +70,11 @@ namespace TankServices
                     axleInfo.rightWheel.motorTorque = motor;
                 }
             }
+        }
+
+        public Vector3 GetCurrentWorldPos()
+        {
+            return transform.position;
         }
 
         private void OnFire()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EnemyServices.Interfaces;
+using TankServices.Interfaces;
 using UnityEngine;
 using Random = System.Random;
 
@@ -16,14 +17,14 @@ namespace EnemyServices
 
         private List<Transform> _spawnPoints;
         private Random _random;
-        private Transform _player;
+        private ITank _tank;
         private float _delayLeft;
 
-        public void Initialize(List<Transform> spawnPoints, Transform player)
+        public void Initialize(List<Transform> spawnPoints, ITank tank)
         {
             _spawnPoints = spawnPoints;
             _random = new Random();
-            _player = player;
+            _tank = tank;
         }
 
         public void DirectUpdate()
@@ -71,7 +72,7 @@ namespace EnemyServices
 
             var enemy = enemyObject.GetComponent<Enemy>();
             enemies.Add(enemy);
-            enemy.Initialize(_player);
+            enemy.Initialize(_tank);
 
             enemy.OnEnemyDestroy += destroyingEnemy => Destroy(destroyingEnemy.gameObject);
         }

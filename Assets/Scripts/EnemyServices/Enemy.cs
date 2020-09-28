@@ -1,6 +1,6 @@
 using System;
-using System.Security.Cryptography;
 using StatsServices;
+using TankServices.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,12 +12,12 @@ namespace EnemyServices
 
         public Action<Enemy> OnEnemyDestroy = enemy => { };
         private NavMeshAgent _navMeshAgent;
-        private Transform _player;
+        private ITank _tank;
         private float _delayLeft;
 
-        public void Initialize(Transform player)
+        public void Initialize(ITank tank)
         {
-            _player = player;
+            _tank = tank;
             _navMeshAgent = transform.GetComponent<NavMeshAgent>();
         }
 
@@ -57,7 +57,7 @@ namespace EnemyServices
                 return;
             }
 
-            _navMeshAgent.SetDestination(_player.position);
+            _navMeshAgent.SetDestination(_tank.GetCurrentWorldPos());
         }
     }
 

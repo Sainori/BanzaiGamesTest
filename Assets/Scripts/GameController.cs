@@ -1,9 +1,6 @@
-﻿using System;
-using EnemyServices.Interfaces;
+﻿using EnemyServices.Interfaces;
 using InputServices.Interfaces;
-using MapServices;
 using MapServices.Interfaces;
-using TankServices;
 using TankServices.Interfaces;
 using UnityEngine;
 
@@ -14,7 +11,7 @@ public class GameController : MonoBehaviour
     private IInputController _inputController;
     private IEnemyController _enemyController;
 
-    private Tank _tank;
+    private ITank _tank;
 
     private void Awake()
     {
@@ -28,7 +25,7 @@ public class GameController : MonoBehaviour
     {
         _mapController.CreateMap();
         _tank = _tankController.CreteTank(_inputController, _mapController.GetPlayerSpawnPoint());
-        _enemyController.Initialize(_mapController.GetEnemySpawnPoints(), _tank.transform);
+        _enemyController.Initialize(_mapController.GetEnemySpawnPoints(), _tank);
     }
 
     private void Update()

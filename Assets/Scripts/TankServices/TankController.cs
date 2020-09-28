@@ -8,11 +8,11 @@ namespace TankServices
     {
         [SerializeField] private GameObject tankPrefab = null;
 
-        public Tank CreteTank(IInputController inputController, Transform spawnPoint)
+        public ITank CreteTank(IInputController inputController, Transform spawnPoint)
         {
             var tankObject = Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
             var shootingController = tankObject.GetComponent<IShootingController>();
-            var tank = tankObject.GetComponent<Tank>();
+            var tank = tankObject.GetComponent<ITank>();
 
             tank.Initialize(inputController, shootingController);
 

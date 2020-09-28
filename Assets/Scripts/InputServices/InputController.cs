@@ -6,6 +6,8 @@ namespace InputServices
 {
     public class InputController : MonoBehaviour, IInputController
     {
+        private const string HorizontalAxisName = "Horizontal";
+        private const string VerticalAxisName = "Vertical";
         public float HorizontalAxis { get; private set; }
         public float VerticalAxis { get; private set; }
 
@@ -17,8 +19,8 @@ namespace InputServices
 
         public void DirectUpdate()
         {
-            HorizontalAxis = Input.GetAxis("Horizontal");
-            VerticalAxis = Input.GetAxis("Vertical");
+            HorizontalAxis = Input.GetAxis(HorizontalAxisName);
+            VerticalAxis = Input.GetAxis(VerticalAxisName);
 
             ProcessKeyInput(KeyCode.W, onKeyUp: OnNextWeapon);
             ProcessKeyInput(KeyCode.Q, onKeyUp: OnPreviousWeapon);
