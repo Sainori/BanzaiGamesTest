@@ -8,5 +8,6 @@ namespace MapServices.Interfaces
         Transform GetPlayerSpawnPoint(); 
         List<Transform> GetEnemySpawnPoints(); 
         void CreateMap();
+        void DeleteMap();
     }
 }

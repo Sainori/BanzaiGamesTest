@@ -11,7 +11,7 @@ namespace TankServices
 
         private int _damage;
         private Rigidbody _rigidbody;
-        private string _enemyTag = "Enemy";
+        private string _enemyTag;
 
         public void Initialize(int shellDamage, string enemyTag)
         {

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TankServices;
 using UnityEngine;
 
 namespace MapServices
@@ -26,6 +25,14 @@ namespace MapServices
 
                 var referenceTransform = reference.transform;
                 gameObjects.Add(Instantiate(reference.prefab, referenceTransform.position, referenceTransform.rotation, mapTransform));
+            }
+        }
+
+        public void DeleteObjects()
+        {
+            foreach (var mapGameObject in gameObjects)
+            {
+                Destroy(mapGameObject);
             }
         }
     }

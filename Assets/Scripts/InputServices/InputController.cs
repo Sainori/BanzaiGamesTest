@@ -16,6 +16,7 @@ namespace InputServices
         public Action OnSpace { get; set; } = () => { };
         public Action OnSpaceUp { get; set; } = () => { };
         public Action OnFire { get; set; } = () => { };
+        public Action OnRestart { get; set; } = () => { };
 
         public void DirectUpdate()
         {
@@ -26,6 +27,17 @@ namespace InputServices
             ProcessKeyInput(KeyCode.Q, onKeyUp: OnPreviousWeapon);
             ProcessKeyInput(KeyCode.Space, onKey: OnSpace, onKeyUp: OnSpaceUp);
             ProcessKeyInput(KeyCode.X, onKeyDown: OnFire);
+            ProcessKeyInput(KeyCode.R, onKeyUp: OnRestart);
+        }
+
+        public void Reset()
+        {
+            OnNextWeapon = () =>{};
+            OnPreviousWeapon = () =>{};
+            OnSpace = () =>{};
+            OnSpaceUp = () =>{};
+            OnFire = () =>{};
+            OnRestart = () =>{};
         }
 
         private void ProcessKeyInput(KeyCode keyCode, Action onKeyDown = null, Action onKey = null, Action onKeyUp = null)

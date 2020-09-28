@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 1628705108533259006}
   - {fileID: 8549977591263573618}
   - {fileID: 6211603045692966030}
+  enemyTag: Enemy
 --- !u!1 &1193394040445445264
 GameObject:
   m_ObjectHideFlags: 0

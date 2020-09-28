@@ -1,6 +1,7 @@
 using System;
 using StatsServices;
 using TankServices.Interfaces;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,6 +49,7 @@ namespace EnemyServices
 
         private void OnDestroy()
         {
+            health = 0;
             OnEnemyDestroy(this);
         }
 
@@ -56,6 +58,11 @@ namespace EnemyServices
             if (IsDead)
             {
                 Destroy(gameObject);
+                return;
+            }
+
+            if (!_navMeshAgent.isActiveAndEnabled)
+            {
                 return;
             }
 

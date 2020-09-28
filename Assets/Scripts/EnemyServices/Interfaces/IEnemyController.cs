@@ -8,5 +8,6 @@ namespace EnemyServices.Interfaces
     {
         void Initialize(List<Transform> spawnPoints, ITank tank);
         void DirectUpdate();
+        void DeleteEnemies();
     }
 }

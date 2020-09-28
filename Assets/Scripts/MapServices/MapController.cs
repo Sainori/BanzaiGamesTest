@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MapServices.Interfaces;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,13 @@ namespace MapServices
             _map = mapObject.GetComponent<Map>();
             _map.BuildByReferences(mapObject.transform);
             navMeshSurface.BuildNavMesh();
+        }
+
+        public void DeleteMap()
+        {
+            navMeshSurface.RemoveData();
+            _map.DeleteObjects();
+            Destroy(_map.gameObject);
         }
     }
 }

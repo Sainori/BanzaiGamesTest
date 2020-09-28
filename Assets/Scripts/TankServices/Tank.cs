@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using InputServices.Interfaces;
 using StatsServices;
 using TankServices.Interfaces;
+using UnityEditor;
 using UnityEngine;
 
 namespace TankServices
@@ -44,8 +45,8 @@ namespace TankServices
         {
             if (IsDead)
             {
-                // TODO: Restart scene
-                Time.timeScale = 0;
+                _inputController.OnRestart();
+                return;
             }
 
             UpdateMove();
@@ -75,6 +76,14 @@ namespace TankServices
         public Vector3 GetCurrentWorldPos()
         {
             return transform.position;
+        }
+
+        public void Destroy()
+        {
+            _inputController = null;
+            _shootingController = null;
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
         private void OnFire()

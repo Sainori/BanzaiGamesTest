@@ -8,5 +8,6 @@ namespace TankServices.Interfaces
         void Initialize(IInputController inputController, IShootingController shootingController);
         void DirectUpdate();
         Vector3 GetCurrentWorldPos();
+        void Destroy();
     }
 }

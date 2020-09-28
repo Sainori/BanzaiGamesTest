@@ -33,15 +33,24 @@ namespace EnemyServices
             SpawnNewEnemy();
         }
 
+        public void DeleteEnemies()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.OnEnemyDestroy(enemy);
+            }
+        }
+
         private void UpdateEnemies()
         {
             for (var index = 0; index < enemies.Count; index++)
             {
                 var enemy = enemies[index];
-                if (enemy == null || enemy.IsDead)
+                if (enemy == null)
                 {
                     enemies.Remove(enemy);
                     index--;
+                    continue;
                 }
 
                 enemy.DirectUpdate();
