@@ -1,4 +1,5 @@
-﻿using EnemyServices.Interfaces;
+﻿using System;
+using EnemyServices.Interfaces;
 using InputServices.Interfaces;
 using MapServices.Interfaces;
 using TankServices.Interfaces;
@@ -34,7 +35,10 @@ public class GameController : MonoBehaviour
 #if UNITY_EDITOR
         _inputController.OnEscape += EditorApplication.ExitPlaymode;
 #endif
-        _inputController.OnEscape += Application.Quit;
+
+        _inputController.OnEscape += Application.platform == RuntimePlatform.WebGLPlayer 
+            ? (Action) Restart 
+            : Application.Quit;
 
         var tank = _tankController.CreteTank(_inputController, _mapController.GetPlayerSpawnPoint());
         _enemyController.Initialize(_mapController.GetEnemySpawnPoints(), tank);
