@@ -14,10 +14,12 @@ namespace EnemyServices
         private NavMeshAgent _navMeshAgent;
         private ITank _tank;
         private float _delayLeft;
+        private string _enemyTag;
 
-        public void Initialize(ITank tank)
+        public void Initialize(ITank tank, string enemyTag)
         {
             _tank = tank;
+            _enemyTag = enemyTag;
             _navMeshAgent = transform.GetComponent<NavMeshAgent>();
         }
 
@@ -30,7 +32,7 @@ namespace EnemyServices
             }
 
             _delayLeft = attackCooldown;
-            if (!other.gameObject.CompareTag("Player"))
+            if (!other.gameObject.CompareTag(_enemyTag))
             {
                 return;
             }

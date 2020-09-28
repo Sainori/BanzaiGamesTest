@@ -6,14 +6,18 @@ namespace TankServices
 {
     public class TankShell : MonoBehaviour
     {
-        private int _damage;
-        private Rigidbody _rigidbody;
         public Action<TankShell> OnShoot { get; set; } = tankShell => { };
         public Action<TankShell> OnExplosion { get; set; } = tankShell => { };
 
-        public void Initialize(int shellDamage)
+        private int _damage;
+        private Rigidbody _rigidbody;
+        private string _enemyTag = "Enemy";
+
+        public void Initialize(int shellDamage, string enemyTag)
         {
             _damage = shellDamage;
+            _enemyTag = enemyTag;
+
             gameObject.SetActive(true);
             _rigidbody = gameObject.GetComponent<Rigidbody>();
         }
@@ -27,7 +31,7 @@ namespace TankServices
         private void OnCollisionEnter(Collision other)
         {
             OnExplosion(this);
-            if (!other.gameObject.CompareTag("Enemy"))
+            if (!other.gameObject.CompareTag(_enemyTag))
             {
                 return;
             }

@@ -9,16 +9,16 @@ namespace EnemyServices
     public class EnemyController : MonoBehaviour, IEnemyController
     {
         [SerializeField] private float spawnDelay = 0.5f;
+        [SerializeField] private string enemyTag = "Player";
 
         [SerializeField] private int maxEnemyCount = 10;
         [SerializeField] private List<GameObject> enemyPrefabs;
-
         [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
-        private List<Transform> _spawnPoints;
-        private Random _random;
         private ITank _tank;
+        private Random _random;
         private float _delayLeft;
+        private List<Transform> _spawnPoints;
 
         public void Initialize(List<Transform> spawnPoints, ITank tank)
         {
@@ -72,8 +72,7 @@ namespace EnemyServices
 
             var enemy = enemyObject.GetComponent<Enemy>();
             enemies.Add(enemy);
-            enemy.Initialize(_tank);
-
+            enemy.Initialize(_tank, enemyTag);
             enemy.OnEnemyDestroy += destroyingEnemy => Destroy(destroyingEnemy.gameObject);
         }
     }

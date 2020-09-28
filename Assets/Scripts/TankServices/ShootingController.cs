@@ -14,6 +14,8 @@ namespace TankServices
         [SerializeField] private List<TankShell> _activeTankShells = new List<TankShell>();
 
         [SerializeField] private List<TankWeapon> _weapons = new List<TankWeapon>();
+
+        [SerializeField] private string enemyTag = "Enemy";
         private int _weaponIndex = 0;
         private TankWeapon _currentWeapon;
 
@@ -32,7 +34,7 @@ namespace TankServices
 
             var shell = _freeTankShells.First();
 
-            shell.Initialize(_currentWeapon.damage);
+            shell.Initialize(_currentWeapon.damage, enemyTag);
             shell.OnShoot += OnShoot;
             shell.ShootWithForce(shootForce);
             shell.OnExplosion += OnExplosion;
