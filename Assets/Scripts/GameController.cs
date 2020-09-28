@@ -2,6 +2,7 @@
 using InputServices.Interfaces;
 using MapServices.Interfaces;
 using TankServices.Interfaces;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -29,6 +30,12 @@ public class GameController : MonoBehaviour
     {
         _mapController.CreateMap();
         _inputController.OnRestart += Restart;
+
+#if UNITY_EDITOR
+        _inputController.OnEscape += EditorApplication.ExitPlaymode;
+#endif
+        _inputController.OnEscape += Application.Quit;
+
         var tank = _tankController.CreteTank(_inputController, _mapController.GetPlayerSpawnPoint());
         _enemyController.Initialize(_mapController.GetEnemySpawnPoints(), tank);
     }

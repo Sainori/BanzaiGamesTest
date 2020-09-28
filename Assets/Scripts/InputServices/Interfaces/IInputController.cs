@@ -15,6 +15,7 @@ namespace InputServices.Interfaces
         Action OnFire { get; set; }
 
         Action OnRestart { get; set; }
+        Action OnEscape { get; set; }
 
         void DirectUpdate();
         void Reset();

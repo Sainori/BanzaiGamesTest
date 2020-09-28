@@ -18,6 +18,8 @@ namespace InputServices
         public Action OnFire { get; set; } = () => { };
         public Action OnRestart { get; set; } = () => { };
 
+        public Action OnEscape { get; set; } = () => { };
+
         public void DirectUpdate()
         {
             HorizontalAxis = Input.GetAxis(HorizontalAxisName);
@@ -28,16 +30,18 @@ namespace InputServices
             ProcessKeyInput(KeyCode.Space, onKey: OnSpace, onKeyUp: OnSpaceUp);
             ProcessKeyInput(KeyCode.X, onKeyDown: OnFire);
             ProcessKeyInput(KeyCode.R, onKeyUp: OnRestart);
+            ProcessKeyInput(KeyCode.Escape, onKeyUp:OnEscape);
         }
 
         public void Reset()
         {
-            OnNextWeapon = () =>{};
-            OnPreviousWeapon = () =>{};
-            OnSpace = () =>{};
-            OnSpaceUp = () =>{};
-            OnFire = () =>{};
-            OnRestart = () =>{};
+            OnNextWeapon = () => { };
+            OnPreviousWeapon = () => { };
+            OnSpace = () => { };
+            OnSpaceUp = () => { };
+            OnFire = () => { };
+            OnRestart = () => { };
+            OnEscape = () => { };
         }
 
         private void ProcessKeyInput(KeyCode keyCode, Action onKeyDown = null, Action onKey = null, Action onKeyUp = null)
